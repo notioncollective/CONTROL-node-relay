@@ -14,5 +14,13 @@ describe('CONTROL node relay: serial port', function() {
 			door.listen();
 			door.events.once('data', done);
 		});
+
+		it('should be able to ping the aruino and get a response', function(done){
+			throw new Error('not yet implemented');
+		});
+
+		it('should recieve an id from the control unit when card is swiped', function(done) {
+			throw new Error('not yet implemented');
+		});
 	});
 });

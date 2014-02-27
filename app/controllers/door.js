@@ -5,7 +5,6 @@ var EventEmitter = require('events').EventEmitter
 	, serialPort = require('serialport')
 	, SerialPort = serialPort.SerialPort
 	, manufacturerRegExp = /Arduino/ 
-	, comNameRegExp = /usbmodem\d+/
 	, connection
 	, defaults = {
 		baudeRate: 9600
@@ -66,10 +65,7 @@ function findPort (port, callback) {
 		}
 		// look for one that matches
 		ports.forEach(function(portObj) {
-			if(
-				comNameRegExp.test(portObj.comName)
-				&& manufacturerRegExp.test(portObj.manufacturer)
-			) {
+			if(manufacturerRegExp.test(portObj.manufacturer)) {
 				// it only lists /dev/cu.portname, not /dev/tty.portname
 				// so we're doing a replace
 				port = portObj.comName.replace('cu', 'tty');
