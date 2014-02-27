@@ -1,7 +1,8 @@
 var express = require('express'),
   mongoose = require('mongoose'),
   fs = require('fs'),
-  config = require('./config/config');
+  config = require('./config/config'),
+  door = require('app/controllers/door');
 
 mongoose.connect(config.db);
 var db = mongoose.connection;
@@ -20,5 +21,8 @@ var app = express();
 
 require('./config/express')(app, config);
 require('./config/routes')(app);
+
+door.listen(config.serialPort);
+
 
 app.listen(config.port);
